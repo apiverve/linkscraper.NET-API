@@ -1,6 +1,9 @@
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace APIVerve
 {
@@ -35,11 +38,11 @@ namespace APIVerve
         public void SetIsDebug(bool isDebug) => _isDebug = isDebug;
         public string GetApiEndpoint() => _apiEndpoint;
 
-        public ResponseObj Execute(QueryOptions options)
+        public ResponseObj Execute(linkscraperQueryOptions options)
         {
             try
             {
-                if(_isDebug)
+                if (_isDebug)
                 {
                     Console.WriteLine("Executing API request...");
                 }
@@ -51,29 +54,34 @@ namespace APIVerve
                     Console.WriteLine("URL: " + url);
                 }
 
-                // Make the request using HTTPClient
-                var client = new System.Net.Http.HttpClient();
-                client.DefaultRequestHeaders.Add("x-api-key", _apiKey);
-
-                var responseString = "";
+                var request = WebRequest.Create(url);
+                request.Headers["x-api-key"] = _apiKey;
+                request.Method = _method;
 
                 if (_method == "POST")
                 {
-                    // Make a GET request
-                    var getResponse = client.GetAsync(url).Result;
-                    responseString = getResponse.Content.ReadAsStringAsync().Result;
-                }
-                else
-                {
-                    // Make a POST request, body is the options object
                     var body = JsonConvert.SerializeObject(options);
-                    var content = new System.Net.Http.StringContent(body, System.Text.Encoding.UTF8, "application/json");
-                    var postResponse = client.PostAsync(url, content).Result;
+                    var data = Encoding.UTF8.GetBytes(body);
 
-                    responseString = postResponse.Content.ReadAsStringAsync().Result;
+                    request.ContentType = "application/json";
+                    request.ContentLength = data.Length;
+
+                    using (var stream = request.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
                 }
 
-                if(_isDebug)
+                string responseString;
+                using (var response = request.GetResponse())
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        responseString = reader.ReadToEnd();
+                    }
+                }
+
+                if (_isDebug)
                 {
                     Console.WriteLine("Response: " + responseString);
                 }
@@ -83,22 +91,20 @@ namespace APIVerve
                     throw new Exception("No response from the server");
                 }
 
-                // Using newtonsoft.json to parse the response string
                 var responseObj = JsonConvert.DeserializeObject<ResponseObj>(responseString);
                 return responseObj;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw e;
+                throw;
             }
         }
 
-        private string constructURL(QueryOptions options)
+        private string constructURL(linkscraperQueryOptions options)
         {
             string url = _apiEndpoint;
 
-            // Convert all the option properties of the object to a query string, using iteration
             string query = "";
             if (_method == "POST")
             {
@@ -107,7 +113,6 @@ namespace APIVerve
                     query += prop.Name + "=" + prop.GetValue(options, null) + "&";
                 }
 
-                // Remove the last character of the query string, which is an extra "&"
                 if (query.Length > 0 && query[query.Length - 1] == '&')
                 {
                     query = query.Remove(query.Length - 1);
