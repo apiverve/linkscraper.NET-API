@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace APIVerve
 {
@@ -16,12 +17,23 @@ namespace APIVerve
         private bool _isSecure { get; set; }
         private bool _isDebug { get; set; }
 
+        /// <summary>
+        /// Provide your API key as part of the constructor
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="isSecure"></param>
         public LinkScraperAPIClient(string apiKey, bool isSecure = true)
         {
             _apiKey = apiKey;
             _isSecure = isSecure;
         }
 
+        /// <summary>
+        /// Provide your API key as part of the constructor
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="isSecure"></param>
+        /// <param name="isDebug"></param>
         public LinkScraperAPIClient(string apiKey, bool isSecure = true, bool isDebug = false)
         {
             _apiKey = apiKey;
@@ -29,7 +41,6 @@ namespace APIVerve
             _isDebug = isDebug;
         }
 
-        public string GetApiKey() => _apiKey;
         public bool GetIsSecure() => _isSecure;
         public bool GetIsDebug() => _isDebug;
 
@@ -38,7 +49,29 @@ namespace APIVerve
         public void SetIsDebug(bool isDebug) => _isDebug = isDebug;
         public string GetApiEndpoint() => _apiEndpoint;
 
-        public ResponseObj Execute(linkscraperQueryOptions options)
+        public delegate void ExecuteAsyncCallback(ResponseObj result);
+
+
+        /// <summary>
+        /// Execute the API call asynchronously
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="options"></param>
+        public void ExecuteAsync(ExecuteAsyncCallback callback, linkscraperQueryOptions options = null)
+        {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
+                ResponseObj result = Execute(options);
+                callback(result);
+            });
+        }
+
+        /// <summary>
+        /// Execute the API call synchronously
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public ResponseObj Execute(linkscraperQueryOptions options = null)
         {
             try
             {
@@ -60,6 +93,11 @@ namespace APIVerve
 
                 if (_method == "POST")
                 {
+                    if(options == null)
+                    {
+                        throw new Exception("Options are required for this call");
+                    }
+
                     var body = JsonConvert.SerializeObject(options);
                     var data = Encoding.UTF8.GetBytes(body);
 
@@ -73,9 +111,19 @@ namespace APIVerve
                 }
 
                 string responseString;
-                using (var response = request.GetResponse())
+                try
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    using (var response = request.GetResponse())
+                    {
+                        using (var reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            responseString = reader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (WebException e)
+                {
+                    using (var reader = new StreamReader(e.Response.GetResponseStream()))
                     {
                         responseString = reader.ReadToEnd();
                     }
@@ -106,25 +154,28 @@ namespace APIVerve
             string url = _apiEndpoint;
 
             string query = "";
-            if (_method == "POST")
+            if (options != null)
             {
-                foreach (var prop in options.GetType().GetProperties())
+                if (_method == "POST")
                 {
-                    query += prop.Name + "=" + prop.GetValue(options, null) + "&";
-                }
+                    foreach (var prop in options.GetType().GetProperties())
+                    {
+                        query += prop.Name + "=" + prop.GetValue(options, null) + "&";
+                    }
 
-                if (query.Length > 0 && query[query.Length - 1] == '&')
-                {
-                    query = query.Remove(query.Length - 1);
-                }
+                    if (query.Length > 0 && query[query.Length - 1] == '&')
+                    {
+                        query = query.Remove(query.Length - 1);
+                    }
 
-                if (!string.IsNullOrEmpty(query))
-                {
-                    url += "?" + query;
+                    if (!string.IsNullOrEmpty(query))
+                    {
+                        url += "?" + query;
+                    }
                 }
             }
 
             return url;
         }
-    }    
+    }
 }
