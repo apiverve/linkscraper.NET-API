@@ -70,10 +70,10 @@ Using the API client, you can perform requests to the API.
 ###### Define Query
 
 ```
-var queryOptions = new linkscraperQueryOptions{
-  url: "myspace.com",
-  maxlinks: 100,
-  includequery: false
+var queryOptions = new linkscraperQueryOptions {
+  url = "myspace.com",
+  maxlinks = 100,
+  includequery = false
 };
 ```
 
