@@ -71,9 +71,9 @@ Using the API client, you can perform requests to the API.
 
 ```
 var queryOptions = new linkscraperQueryOptions{
-  "url": "myspace.com",
-  "maxlinks": 100,
-  "includequery": false
+  url: "myspace.com",
+  maxlinks: 100,
+  includequery: false
 };
 ```
 
@@ -84,7 +84,7 @@ var response = apiClient.Execute(queryOptions);
 if(response.error != null) {
 	Console.WriteLine(response.error);
 } else {
-    var jsonResponse = JsonConvert.SerializeObject(response.data, Newtonsoft.Json.Formatting.Indented);
+    var jsonResponse = JsonConvert.SerializeObject(response, Newtonsoft.Json.Formatting.Indented);
     Console.WriteLine(jsonResponse);
 }
 ```
@@ -320,7 +320,7 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t1568",
+        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t1569",
         "href": "http://myspace.com/article/2022/3/14/thom-yorke-surprise-releases-new-song-517",
         "external": false
       },
@@ -340,7 +340,7 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t618",
+        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t619",
         "href": "http://myspace.com/article/2022/3/14/dolly-parton-respectfully-bows-out-of-rock-hall-nomination",
         "external": false
       },
@@ -360,7 +360,7 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t1346",
+        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t1348",
         "href": "http://myspace.com/article/2022/3/14/yeah-yeah-yeahs-tease-first-new-music-in-more-than-nine-years",
         "external": false
       },
@@ -475,7 +475,7 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t113",
+        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t114",
         "href": "http://myspace.com/article/2022/3/10/how-mgmts-little-dark-age-became-an-unstoppable-tiktok-meme-spin",
         "external": false
       },
@@ -555,7 +555,7 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t51",
+        "text": "NEWS\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t50",
         "href": "http://myspace.com/article/2022/3/8/john-doe-to-release-new-solo-album-spin",
         "external": false
       },
