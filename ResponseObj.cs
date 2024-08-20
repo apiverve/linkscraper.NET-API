@@ -6,19 +6,22 @@ namespace APIVerve
 {
 public class links
 {
-    [JsonProperty("external")]
-    public bool external { get; set; }
+    [JsonProperty("text")]
+    public string text { get; set; }
 
     [JsonProperty("href")]
     public string href { get; set; }
 
-    [JsonProperty("text")]
-    public string text { get; set; }
+    [JsonProperty("external")]
+    public bool external { get; set; }
 
 }
 
 public class data
 {
+    [JsonProperty("url")]
+    public string url { get; set; }
+
     [JsonProperty("linkCount")]
     public int linkCount { get; set; }
 
@@ -27,9 +30,6 @@ public class data
 
     [JsonProperty("maxLinksReached")]
     public bool maxLinksReached { get; set; }
-
-    [JsonProperty("url")]
-    public string url { get; set; }
 
 }
 
@@ -43,6 +43,9 @@ public class ResponseObj
 
     [JsonProperty("data")]
     public data data { get; set; }
+
+    [JsonProperty("code")]
+    public int code { get; set; }
 
 }
 
