@@ -70,7 +70,7 @@ Using the API client, you can perform requests to the API.
 ###### Define Query
 
 ```
-var queryOptions = new linkscraperQueryOptions {
+var queryOptions = new LinkScraperQueryOptions {
   url = "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
   maxlinks = 20,
   includequery = false
@@ -96,92 +96,93 @@ if(response.error != null) {
   "status": "ok",
   "error": null,
   "data": {
+    "url": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
     "linkCount": 16,
     "links": [
       {
-        "external": false,
+        "text": "",
         "href": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html/pdfs/AWSEC2/latest/UserGuide/ec2-ug.pdf#concepts",
-        "text": ""
+        "external": false
       },
       {
-        "external": true,
+        "text": "AWS",
         "href": "https://aws.amazon.com",
-        "text": "AWS"
+        "external": true
       },
       {
-        "external": false,
+        "text": "Documentation",
         "href": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html/index.html",
-        "text": "Documentation"
+        "external": false
       },
       {
-        "external": false,
+        "text": "Amazon EC2",
         "href": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html/ec2/index.html",
-        "text": "Amazon EC2"
+        "external": false
       },
       {
-        "external": true,
+        "text": "User Guide",
         "href": "concepts.html",
-        "text": "User Guide"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Amazon EC2 Instance Types Guide",
         "href": "https://docs.aws.amazon.com/ec2/latest/instancetypes/",
-        "text": "Amazon EC2 Instance Types Guide"
+        "external": true
       },
       {
-        "external": true,
+        "text": "PCI DSS Level 1",
         "href": "https://aws.amazon.com/compliance/pci-dss-level-1-faqs/",
-        "text": "PCI DSS Level 1"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Amazon EC2 Auto Scaling",
         "href": "https://docs.aws.amazon.com/autoscaling",
-        "text": "Amazon EC2 Auto Scaling"
+        "external": true
       },
       {
-        "external": true,
+        "text": "AWS Backup",
         "href": "https://docs.aws.amazon.com/aws-backup",
-        "text": "AWS Backup"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Amazon CloudWatch",
         "href": "https://docs.aws.amazon.com/cloudwatch",
-        "text": "Amazon CloudWatch"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Elastic Load Balancing",
         "href": "https://docs.aws.amazon.com/elasticloadbalancing",
-        "text": "Elastic Load Balancing"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Amazon GuardDuty",
         "href": "https://docs.aws.amazon.com/guardduty",
-        "text": "Amazon GuardDuty"
+        "external": true
       },
       {
-        "external": true,
+        "text": "EC2 Image Builder",
         "href": "https://docs.aws.amazon.com/imagebuilder",
-        "text": "EC2 Image Builder"
+        "external": true
       },
       {
-        "external": true,
+        "text": "AWS Launch Wizard",
         "href": "https://docs.aws.amazon.com/launchwizard",
-        "text": "AWS Launch Wizard"
+        "external": true
       },
       {
-        "external": true,
+        "text": "AWS Systems Manager",
         "href": "https://docs.aws.amazon.com/systems-manager",
-        "text": "AWS Systems Manager"
+        "external": true
       },
       {
-        "external": true,
+        "text": "Amazon Lightsail",
         "href": "https://docs.aws.amazon.com/lightsail",
-        "text": "Amazon Lightsail"
+        "external": true
       }
     ],
-    "maxLinksReached": false,
-    "url": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html"
-  }
+    "maxLinksReached": false
+  },
+  "code": 200
 }
 ```
 
