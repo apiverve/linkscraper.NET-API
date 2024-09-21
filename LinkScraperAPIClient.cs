@@ -89,7 +89,7 @@ namespace APIVerve
 
                 var request = WebRequest.Create(url);
                 request.Headers["x-api-key"] = _apiKey;
-                request.Headers["auth-mode"] = "nuget-package";
+                request.Headers["auth-mode"] = "nuget";
                 request.Method = _method;
 
                 if (_method == "POST")
