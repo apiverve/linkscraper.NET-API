@@ -4,7 +4,7 @@
     <TargetFrameworks>net20;net35;net40;net45;netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>APIVerve.API.LinkScraper</Title>
-    <Version>1.1.5</Version>
+    <Version>1.1.6</Version>
     <Authors>APIVerve</Authors>
     <Company>APIVerve</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -18,7 +18,7 @@
     <RepositoryUrl>https://github.com/apiverve/linkscraper.NET-API</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>link scraper; link scraper api; link scraping api; link scraper tool; link scraping tool</PackageTags>
-    <Copyright>©2024 APIVerve. All Rights Reserved</Copyright>
+    <Copyright>©2025 APIVerve. All Rights Reserved</Copyright>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <PackageIcon>favicon@128.png</PackageIcon>
     <BaseOutputPath>.\bin</BaseOutputPath>
