@@ -32,9 +32,9 @@ From within Visual Studio:
 
 1. Open the Solution Explorer.
 2. Right-click on a project within your solution.
-3. Click on Manage NuGet Packages...
+3. Click on Manage NuGet Packages..
 4. Click on the Browse tab and search for "APIVerve.API.LinkScraper".
-5. Click on the APIVerve.API.LinkScraper package, select the appropriate version in the right-tab and click Install.
+5. Click on the APIVerve.API.LinkScraper package, click Install.
 
 
 ---
@@ -105,11 +105,6 @@ if(response.error != null) {
         "external": false
       },
       {
-        "text": "AWS",
-        "href": "https://aws.amazon.com",
-        "external": true
-      },
-      {
         "text": "Documentation",
         "href": "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html/index.html",
         "external": false
@@ -126,7 +121,7 @@ if(response.error != null) {
       },
       {
         "text": "Amazon EC2 Instance Types Guide",
-        "href": "https://docs.aws.amazon.com/ec2/latest/instancetypes/",
+        "href": "https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html",
         "external": true
       },
       {
@@ -136,47 +131,52 @@ if(response.error != null) {
       },
       {
         "text": "Amazon EC2 Auto Scaling",
-        "href": "https://docs.aws.amazon.com/autoscaling",
+        "href": "https://docs.aws.amazon.com/autoscaling/",
         "external": true
       },
       {
         "text": "AWS Backup",
-        "href": "https://docs.aws.amazon.com/aws-backup",
+        "href": "https://docs.aws.amazon.com/aws-backup/",
         "external": true
       },
       {
         "text": "Amazon CloudWatch",
-        "href": "https://docs.aws.amazon.com/cloudwatch",
+        "href": "https://docs.aws.amazon.com/cloudwatch/",
         "external": true
       },
       {
         "text": "Elastic Load Balancing",
-        "href": "https://docs.aws.amazon.com/elasticloadbalancing",
+        "href": "https://docs.aws.amazon.com/elasticloadbalancing/",
         "external": true
       },
       {
         "text": "Amazon GuardDuty",
-        "href": "https://docs.aws.amazon.com/guardduty",
+        "href": "https://docs.aws.amazon.com/guardduty/",
         "external": true
       },
       {
         "text": "EC2 Image Builder",
-        "href": "https://docs.aws.amazon.com/imagebuilder",
+        "href": "https://docs.aws.amazon.com/imagebuilder/",
         "external": true
       },
       {
         "text": "AWS Launch Wizard",
-        "href": "https://docs.aws.amazon.com/launchwizard",
+        "href": "https://docs.aws.amazon.com/launchwizard/",
         "external": true
       },
       {
         "text": "AWS Systems Manager",
-        "href": "https://docs.aws.amazon.com/systems-manager",
+        "href": "https://docs.aws.amazon.com/systems-manager/",
         "external": true
       },
       {
         "text": "Amazon Lightsail",
-        "href": "https://docs.aws.amazon.com/lightsail",
+        "href": "https://docs.aws.amazon.com/lightsail/",
+        "external": true
+      },
+      {
+        "text": "Amazon Lightsail or Amazon EC2",
+        "href": "https://docs.aws.amazon.com/decision-guides/latest/lightsail-or-ec2/lightsail-or-ec2.html",
         "external": true
       }
     ],
@@ -208,7 +208,7 @@ All usage of the APIVerve website, API, and services is subject to the [APIVerve
 ## License
 Licensed under the The MIT License (MIT)
 
-Copyright (&copy;) 2024 APIVerve, and Evlar LLC
+Copyright (&copy;) 2025 APIVerve, and EvlarSoft LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
