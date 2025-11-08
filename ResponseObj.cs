@@ -4,49 +4,52 @@ using Newtonsoft.Json;
 
 namespace APIVerve
 {
-public class links
-{
-    [JsonProperty("text")]
-    public string text { get; set; }
+    /// <summary>
+    /// Links data
+    /// </summary>
+    public class Links
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
 
-    [JsonProperty("href")]
-    public string href { get; set; }
+        [JsonProperty("href")]
+        public string Href { get; set; }
 
-    [JsonProperty("external")]
-    public bool external { get; set; }
+        [JsonProperty("external")]
+        public bool External { get; set; }
 
-}
+    }
+    /// <summary>
+    /// Data data
+    /// </summary>
+    public class Data
+    {
+        [JsonProperty("url")]
+        public string Url { get; set; }
 
-public class data
-{
-    [JsonProperty("url")]
-    public string url { get; set; }
+        [JsonProperty("linkCount")]
+        public int LinkCount { get; set; }
 
-    [JsonProperty("linkCount")]
-    public int linkCount { get; set; }
+        [JsonProperty("links")]
+        public Links[] Links { get; set; }
 
-    [JsonProperty("links")]
-    public links[] links { get; set; }
+        [JsonProperty("maxLinksReached")]
+        public bool MaxLinksReached { get; set; }
 
-    [JsonProperty("maxLinksReached")]
-    public bool maxLinksReached { get; set; }
+    }
+    /// <summary>
+    /// API Response object
+    /// </summary>
+    public class ResponseObj
+    {
+        [JsonProperty("status")]
+        public string Status { get; set; }
 
-}
+        [JsonProperty("error")]
+        public object Error { get; set; }
 
-public class ResponseObj
-{
-    [JsonProperty("status")]
-    public string status { get; set; }
+        [JsonProperty("data")]
+        public Data Data { get; set; }
 
-    [JsonProperty("error")]
-    public object error { get; set; }
-
-    [JsonProperty("data")]
-    public data data { get; set; }
-
-    [JsonProperty("code")]
-    public int code { get; set; }
-
-}
-
+    }
 }
